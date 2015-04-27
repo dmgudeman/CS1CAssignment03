@@ -5,7 +5,7 @@ import java.util.Locale;
 public class Foothill
 {
    final static int MAT_SIZE = 3200;
-   
+
    public static void main(String[] args) throws Exception
    {
       int r, randRow, randCol;
@@ -19,43 +19,35 @@ public class Foothill
       double[][] mat, matAns;
 
       mat = new double[MAT_SIZE][MAT_SIZE];
-//      double mat1[][] ={{1.0,2.0,},{2.0,3.0}};
-            
-    
-      
+
       // generate small% of non-default values bet 0 and 1
-      smallPercent = MAT_SIZE/10. * MAT_SIZE;
-////      for (r = 0; r < smallPercent; r++)
+      smallPercent = 0.01;
       {
-         for(int k = 0; k <MAT_SIZE; k++ )
-            for (int j = 0; j <MAT_SIZE; j++)
+         for (int k = 0; k < MAT_SIZE; k++)
+            for (int j = 0; j < MAT_SIZE; j++)
             {
                double d = Math.random();
-               if (d < 01.0)
+               if (d < smallPercent)
                   mat[k][j] = Math.random();
                else
-                  mat[k][j] = 0.00; 
+                  mat[k][j] = 0.00;
             }
       }
-      
-      
+
       matAns = new double[MAT_SIZE][MAT_SIZE];
-      // 10x10 submatrix in lower right
-//      matShow(mat, MAT_SIZE - 4, 10);
-    matShow10(mat, 0 , MAT_SIZE);
+
+      matShow(mat, 0, 10);
       startTime = System.nanoTime();
       matMult(mat, mat, matAns);
       stopTime = System.nanoTime();
 
-//      matShow(matAns, MAT_SIZE - 2, 10);
- //     matShow(matAns, 0 , MAT_SIZE);
-      matShow10(matAns, 0 , MAT_SIZE);
-      
+      matShow(matAns, 0, 10);
+
       System.out.println("\nSize = " + MAT_SIZE + " Mat. Mult. Elapsed Time: "
-         + tidy.format( (stopTime - startTime) / 1e9)
-         + " seconds.");
+            + tidy.format((stopTime - startTime) / 1e9) + " seconds.");
    }
- // _______________________________________ 
+
+   // _______________________________________ 
    
    
    
@@ -83,41 +75,24 @@ public class Foothill
       }    
       return matAns;
    }
-   
-   
-   private static void matShow(double [][] matAns, int matRow, int matCol)
-   {   
+    
+   private static void matShow(double[][] matAns, int start, int size)
+   {
       NumberFormat tidy = NumberFormat.getInstance(Locale.US);
-      tidy.setMaximumFractionDigits(2);
-      
-      for(int k = 0; k < matAns.length; k++ )
+      tidy.setMaximumFractionDigits(4);
+      if (size < matAns.length)
       {
-         System.out.println("\n");
-         for (int j = 0; j < matAns.length; j++)
+         for (int k = 0; k < size - start; k++)
          {
-            
-           // System.out.print(k +" " + j + "\t");
-            System.out.print(tidy.format(matAns[k][j]) + "\t");
+            System.out.println("\n");
+            for (int j = 0; j < size - start; j++)
+            {
+               System.out.print(tidy.format(matAns[k][j]) + "\t");
+            }
          }
+         System.out.println("\n\n");
       }
-      System.out.println("\n\n");
    }
-   private static void matShow10(double [][] matAns, int matRow, int matCol)
-   {   
-      NumberFormat tidy = NumberFormat.getInstance(Locale.US);
-      tidy.setMaximumFractionDigits(2);
-      
-      for(int k = 0; k < matAns.length; k++ )
-      {
-         System.out.println("\n");
-         for (int j = 0; j < matAns.length; j++)
-         {
-            
-           // System.out.print(k +" " + j + "\t");
-            System.out.print(tidy.format(matAns[k][j]) + "\t");
-         }
-      }
-      System.out.println("\n\n");
-   }
-}
+ 
+ }
 
