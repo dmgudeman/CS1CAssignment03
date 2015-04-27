@@ -8,9 +8,7 @@ public class Foothill
 
    public static void main(String[] args) throws Exception
    {
-      int r, randRow, randCol;
       long startTime, stopTime;
-      double randFrac;
       double smallPercent;
       NumberFormat tidy = NumberFormat.getInstance(Locale.US);
       tidy.setMaximumFractionDigits(4);
