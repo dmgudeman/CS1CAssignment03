@@ -1,0 +1,109 @@
+
+David Gudeman
+
+
+The matrix multiply will have three loops. One two go sequentially through
+the rows and one to go through the columns.  Due to the nature of matrix 
+multiply each time a value is calculated N must be traversed again. This 
+gives three loops total.  I would expect that the time complexity would
+be at a cubic level. 
+
+Since each of the loops must loop through for the entire N and the loops
+do not shorten over the iterations, I would expect O(f(N)) to be nearly
+equal to the average run rate theta(f(N)). 
+
+Calculating the value for the rows is a constant proportional to the matrix
+length. If the matrix is a sparse matrix the time hit for calculation will
+be bigger but not by much so will affect run times minimally.
+
+_______Run shows a 10X10 matrix to verify multiplication accuracy________
+
+_______mat______
+
+0	0	0	0	0	0	0.8739	0	0	0	
+
+0	0	0	0	0	0	0	0	0	0.5498	
+
+0	0	0	0	0	0	0	0	0	0.4551	
+
+0	0.199	0	0	0	0	0	0	0	0	
+
+0	0	0	0	0	0	0	0	0	0	
+
+0	0	0.2494	0	0	0	0	0	0	0.3805	
+
+0	0.3047	0	0	0	0	0.3843	0	0	0	
+
+0	0	0.8941	0.8695	0	0	0	0	0	0	
+
+0	0	0	0	0	0	0	0	0	0	
+
+0	0	0	0	0.1017	0	0	0	0	0	
+
+
+______ansMat______
+
+0	0.2663	0	0	0	0	0.3359	0	0	0	
+
+0	0	0	0	0.0559	0	0	0	0	0	
+
+0	0	0	0	0.0463	0	0	0	0	0	
+
+0	0	0	0	0	0	0	0	0	0.1094	
+
+0	0	0	0	0	0	0	0	0	0	
+
+0	0	0	0	0.0387	0	0	0	0	0.1135	
+
+0	0.1171	0	0	0	0	0.1477	0	0	0.1675	
+
+0	0.173	0	0	0	0	0	0	0	0.4069	
+
+0	0	0	0	0	0	0	0	0	0	
+
+0	0	0	0	0	0	0	0	0	0	
+
+
+
+Size = 10 Mat. Mult. Elapsed Time: 0 seconds.
+
+______Data________________________________________
+
+At 1% random fill
+ 100 =  0.0071 sec
+ 200 =  0.0201
+ 400 =  0.1817
+ 800 =  4.823  
+1600 = 78.85
+3200 =854.9  
+
+At 10% random fill
+ 100 =  0.0055 sec
+ 200 =  0.2050
+ 400 =  0.1794
+ 800 =  4.764
+1600 = 79.43 
+
+At 100% random fill
+ 100 =  0.0079 sec
+ 200 =  0.0341
+ 400 =  0.2696
+ 800 =  5,514
+1600 = 82.99
+
+
+_____Questions_______________________________
+
+1. The smallest M that gave a non-zero time for 1% random fill was
+   10 seconds
+2. The time complexity appears to have followed a cubic magnitude.
+3. A size of 3200 for all three fill percentages was more than the 
+   reasonable limit for this configuration. I ran the 3200 size at 1% 
+   fill and it yielded a time of 14.24 minutes (854.9 sec).
+4. The effect of increasing the fill percentage had a slightly bigger
+   effect than I had guessed. 
+
+
+
+
+ 
